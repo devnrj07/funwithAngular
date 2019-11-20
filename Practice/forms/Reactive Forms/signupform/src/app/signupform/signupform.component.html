@@ -1,0 +1,86 @@
+<h2>Sign up form! </h2>
+
+<form action="" method="post" [formGroup]="signupForm">
+
+    <p>
+        {{signupForm.value| json}}
+    </p>
+
+    <label for="name">UserName : </label>
+    <input type="text" name="name" formControlName="name"><br>
+    <hr>
+
+    <label for="password">Password : </label>
+    <input type="password" name="password" formControlName="password"><br>
+    <hr>
+
+    <label for="cnfpass">Confirm Password : </label>
+    <input type="password" name="cnfpassword" id="" formControlName="cnfpassword"><br>
+    <hr>
+
+    <label for="mail">Email :</label>
+    <input type="email" name="email" formControlName="mail"><br>
+    <hr>
+
+    <label for="gender">Gender : </label>
+    <div *ngFor="let x of options">
+        <input type="radio" name="gender" formControlName="gender" [value]="x">{{x}}
+    </div><br>
+    <hr>
+
+    <div class="address" formGroupName="address">
+
+        <label for="area">Area :</label>
+        <input type="text" name="area" formControlName="area">
+        <label for="city">City :</label>
+        <input type="text" name="city" formControlName="city">
+        <label for="zipcode">Pincode :</label>
+        <input type="number" name="zipcode" id="" formControlName="zipcode">
+
+        <div class="form-group">
+            <label>Country:</label>
+            <select class="form-control" formControlName="country">
+             <option *ngFor="let x of countries" [value]="x">{{x}}</option>
+            </select>
+        </div>
+    </div><br>
+    <button type="submit" [disabled]="!signupForm.valid">Submit</button>
+    <button (click)="loadData()">Load</button>
+</form>
+
+<!------------------------------------Visual Validation--------------------------------------------->
+<hr>
+<div class="validations" *ngIf="signupForm.touched">
+
+    <span>
+      <i class="fa fa-check-circle" style="color:green;" *ngIf="signupForm.controls.name.valid"></i>
+      <i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.name.invalid"></i>
+      <!--<i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.name.errors.noSpaces">Should not contain any spaces</i>-->
+      
+      Username should be minimum {{signupForm.controls.name.errors.minlength.requiredLength}} characters long.
+ </span><br>
+    <span>
+        <i class="fa fa-check-circle" style="color:green;" *ngIf="signupForm.controls.password.valid"></i>
+        <i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.password.invalid"></i>
+        Passowrd should contain one Uppercase, one lowercase and one digit
+    </span><br>
+
+    <span>
+        <i class="fa fa-check-circle" style="color:green;" *ngIf="signupForm.controls.cnfpassword.valid"></i>
+        <i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.cnfpassword.invalid"></i>
+        <!--<i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.cnfpassword.errors.isError"></i>-->
+        Password and confirmPassword should match
+    </span><br>
+
+    <span>
+        <i class="fa fa-check-circle" style="color:green;" *ngIf="signupForm.controls.mail.valid"></i>
+        <i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.mail.invalid"></i>
+        Email is invalid
+    </span> <br>
+
+    <span>
+        <i class="fa fa-check-circle" style="color:green;" *ngIf="signupForm.controls.zipcode.valid"></i>
+        <i class="fa fa-times-circle" style="color:firebrick;"  *ngIf="signupForm.controls.zipcode.invalid"></i>
+        Zipcode is invalid
+    </span><br>
+</div>

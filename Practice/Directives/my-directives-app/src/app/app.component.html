@@ -1,0 +1,24 @@
+<div *ngIf="cars.length > 0; then carslist else nocarslist"></div>
+
+<ng-template #carslist>
+    Display cars list
+</ng-template>
+<ng-template #nocarslist>
+    Display No cars List
+</ng-template>
+<br><br>
+<h3>hidden property example!</h3>
+<app-hiddenproperty></app-hiddenproperty>
+<br> <br>
+
+<h3>Switch case example!</h3>
+<app-switchcase></app-switchcase>
+<br><br>
+
+<h3>NgFor case example!</h3>
+<app-ngforloop></app-ngforloop>
+<br><br>
+
+<h3>Custom Directive Example</h3>
+<app-customdirectives></app-customdirectives>
+<br><br>

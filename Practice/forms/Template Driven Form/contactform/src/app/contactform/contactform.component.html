@@ -1,0 +1,49 @@
+<div class="form-group">
+    <h2>Contact Form</h2>
+    <hr>
+    <form #f="ngForm">
+
+
+        <label for="firstName">FirstName : </label>
+        <input type="text" required minlength="5" maxlength="20" ngModel name="firstName" #Name="ngModel" (change)="log(Name)" class="form-control">
+        <!--Username Validation-->
+        <div *ngIf="Name.invalid && ( Name.dirty || Name.touched)" class="">
+            <div *ngIf="Name.errors.required"> <span class="danger">Username is Required</span> </div>
+            <div *ngIf="Name.errors.minlength"> <span class="danger">Minimum length should be {{Name.errors.minlength.requiredLength}}</span> </div>
+            <div *ngIf="Name.errors.maxlength"> <span class="danger">Maximum length allowed is {{Name.errors.maxlength.requiredLength}}</span> </div>
+
+        </div>
+
+        <label for="email">Email :</label>
+        <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ngModel name="email" #Email="ngModel" class="form-control">
+        <div *ngIf="Email.invalid && ( Email.dirty || Email.touched)" class="">
+            <div *ngIf="Email.errors.required"> <span class="danger">This field is Required</span> </div>
+            <div *ngIf="Email.errors.pattern"> <span class="danger">Match the pattern</span></div>
+        </div>
+
+
+        <label for="terms">Terms&Conditions* </label>
+
+        <input required type="checkbox" ngModel name="terms" #Terms="ngModel">
+        <div *ngIf="Terms.invalid && ( Terms.dirty || Terms.touched)" class="">
+            <div *ngIf="Terms.errors.required" class="danger">Tick this!</div>
+        </div>
+        <br>
+
+        <label for=""></label>
+        <select ngModel name="topics" id="topic" #Topic="ngModel" class="form-control">
+            <option *ngFor="let x of Topics" [value] ="x.id">{{x.name}}</option>
+        </select>
+        <br>
+
+        <label for="package"></label>
+        <div *ngFor="let x of Packs">
+            <input type="radio" ngModel #Pack="ngModel" name="package" [value]="x.id">{{x.name}}
+        </div>
+        <button class="" (click)="Submit(f)" [disabled]="f.invalid">Submit</button>
+    </form>
+
+    <p>
+        {{f.value | json}}
+    </p>
+</div>

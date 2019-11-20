@@ -1,0 +1,12 @@
+<p>How switchcase works in angular!</p>
+
+<ul class="nav nav-pill">
+    <li [class.active]="viewMode == 'classic'"><a (click)="viewMode = 'classic'">Classic mode</a></li>
+    <li [class.active]="viewMode == 'cool'"><a (click)="viewMode = 'cool'">Cool mode</a></li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'classic'">Display in classic mode</div>
+    <div *ngSwitchCase="'cool'">Display in cool mode </div>
+    <div *ngSwitchDefaut>Error mode ?</div>
+</div>

@@ -1,0 +1,25 @@
+<p>parent starts!</p>
+
+<div>
+    <h1>Data from grandParent</h1>
+    <p>{{dataFromGP}}</p>
+</div>
+
+
+
+<div>
+    <p>from Gparents</p>
+    <app-child [messageFromParent]="dataFromGP"></app-child>
+</div>
+<div>
+    <p>from parents</p>
+    <app-child [messageFromParent]="displayMessage"></app-child>
+</div>
+
+<div>
+    <p>reply by child
+        <p>
+
+            <app-child2 (messageForParent)="handleEvent($event)"></app-child2>
+            <br> : {{dataFromChild}}
+</div>

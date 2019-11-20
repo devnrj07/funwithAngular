@@ -1,0 +1,5 @@
+<p>how ngforloop works in angular!</p>
+
+<div *ngFor="let x of cars; index as i even as isEven">
+    {{i}} - {{x.name}} -- {{x.wheels}} : <span *ngIf="isEven && i != 0">Even apply some class or style to it</span>
+</div>
